@@ -1,0 +1,7 @@
+{% extends 'charms/base.djhtml' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+    <pre>{{ charm.whole_string }}</pre>
+{% endblock content %}

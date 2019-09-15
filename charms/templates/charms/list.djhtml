@@ -1,0 +1,33 @@
+{% extends 'charms/base.djhtml' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+    <table class="table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Exalt</th>
+        </tr>
+        {% for charm in charms %}
+            <tr>
+                <td><a href="{% url 'charm_details' charm_id=charm.id %}">{{ charm.title }}</a></td>
+                <td>{{ charm.exalt_type }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <script type="text/javascript" src="{% static 'js/tablefilter/tablefilter.js' %}"></script>
+    <script>
+     var filterConfig = {
+        base_path: '{% static 'js/tablefilter' %}/',
+        auto_filter: {
+            delay: 15
+        },
+        highlight_keywords: true,
+        filters_row_index: 1,
+        alternate_rows: true,
+     };
+     var tf = new TableFilter(document.querySelector('.table-striped'), filterConfig);
+     tf.init();
+    </script>
+{% endblock content %}
